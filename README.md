@@ -1,7 +1,7 @@
 # sql-dicom-files
 Use SQL to select a list of DICOM file names
 
-This as a very early (pre-alpha) release of several simple scripts. Basic functionality and documentation is still missing.
+This as an alpha release of several simple scripts. Basic functionality and documentation is still missing.
 
 First, generate a list of DICOM file names in a DICOM directory tree. In the following example, DICOM is the top level directory. It is a symbolic link and so the switch "-L" is used:
 ```
@@ -17,7 +17,7 @@ Fourth, use the sqlite3 client to select file names that fulfill certain conditi
 ```
   sqlite3 DicomInfo.db
   sqlite> .output file_list.txt
-  sqlite> select FilePath from dicominfo where XRayTubeCurrent = 221.0;
+  sqlite> select FilePath from dicominfo where XRayTubeCurrent = 221.0 order by SliceLocation;
   sqlite> .quit
 ```
   

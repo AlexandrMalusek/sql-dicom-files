@@ -1,4 +1,11 @@
 # sql-dicom-files
+## Introduction
+
+CT scanners export reconstructed data as DICOM images in a directory structure that varies among the scanners. In some cases, the data can be exported with a DICOMDIR file, which relates each DICOM image to the corresponding scanning series. Viewers of DICOM files designed for radiologists can read the DICOMDIR file and present the images to the end-user in a logical order. An example of such a program is OsiriX. Programs designed for general image processing often lack this feature; they can read individual DICOM images or a list of DICOM images only. An example is ImageJ and its new version Fiji. In these cases, a tool that could prepare a list of images belonging to a particular CT scan would be handy. The aim of the sql-dicom-files repository is to provide such a tool.
+
+The sql-dicom-files repository consists of scripts that extract information about the CT scans from the DICOM image headers and store this information in an SQLite database. The user can then generate a list of DICOM files obtained for specific scanning settings by querying the database via SQL commands. Some of the DICOM header records vary among CT scanners; for instance, the ConvolutionKernel record may be represented via a string or an array of strings. The authors of this repository do not know how to test for all possible situations. Thus the user of the sql-dicom-files may need to modify the createDatabase.py script to process data produced by a particular CT scanner. Another reason for modifying the createDatabase.py script is that the end-user may benefit from additional database columns describing the experimental design of the CT scans.
+
+## Usage
 Use SQL to select a list of DICOM file names
 
 This as an alpha release of several simple scripts. Basic functionality and documentation is still missing.
